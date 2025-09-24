@@ -1,7 +1,7 @@
 'use client'
 
 interface SquareProps {
-  value: String;
+  value: string;
   handleButton: () => void;
 }
 

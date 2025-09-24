@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "build:docker": "BUILD_MODE=docker next build ",
+    "build:capacitor": "BUILD_MODE=capacitor next build",
+    "docker:build-image": "npm run build:docker && docker build -t tic-tac-toe .",
+    "mobile:build": "npm run build:capacitor && npx cap sync",
     "lint": "eslint"
   },
   "dependencies": {
