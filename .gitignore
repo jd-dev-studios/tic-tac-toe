@@ -18,6 +18,7 @@
 /out/
 /dist-docker/
 /dist-capacitor/
+/android/
 
 # production
 /build
