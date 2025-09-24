@@ -1,36 +1,172 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tic Tac Toe
 
-## Getting Started
+A responsive Tic Tac Toe game built with Next.js, TypeScript, and Tailwind CSS. Supports deployment as a web app (Docker) and mobile app (Android via Capacitor).
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- 🎮 Classic Tic Tac Toe gameplay
+- 📱 Fully responsive design (mobile-first)
+- 🔄 Live reload for mobile development
+- 🐳 Docker container support
+- 🤖 Android app via Capacitor
+- ⚡ Built with Next.js and TypeScript
+- 🎨 Styled with Tailwind CSS
+
+## Prerequisites
+
+- Node.js 18+ 
+- npm or yarn
+- For Docker deployment: Docker
+- For Android development: Android Studio
+
+## Project Structure
+
+```
+tic-tac-toe/
+├── components/          # React components
+├── public/             # Static assets
+├── dist-docker/        # Docker build output (generated)
+├── dist-capacitor/     # Capacitor build output (generated)
+├── android/            # Android project (generated)
+├── next.config.js      # Next.js configuration
+├── capacitor.config.ts # Capacitor configuration
+└── Dockerfile          # Docker container setup
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Quick Start
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Web Development
+```bash
+# Install dependencies
+npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Start development server
+npm run dev
+```
 
-## Learn More
+Open [http://localhost:3000](http://localhost:3000) to play the game in your browser.
 
-To learn more about Next.js, take a look at the following resources:
+### Mobile Development (Android)
+```bash
+# First-time setup (generates android/ directory)
+npm run setup:android
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Build and run on Android device/emulator
+npm run android:run
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Development with live reload (requires two terminals)
+# Terminal 1: Start Next.js dev server
+npm run dev
 
-## Deploy on Vercel
+# Terminal 2: Run Android with live reload
+npm run android:dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Docker Deployment
+```bash
+# Build Docker image
+npm run docker:build-image
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Run container
+docker run -p 3000:3000 tic-tac-toe
+```
+
+## Available Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start Next.js development server |
+| `npm run build` | Build for production (standalone) |
+| `npm run build:docker` | Build for Docker deployment |
+| `npm run build:capacitor` | Build for mobile app (static export) |
+| `npm run setup:android` | Set up Android project (first time) |
+| `npm run mobile:build` | Build for mobile and sync with Capacitor |
+| `npm run android:open` | Open Android project in Android Studio |
+| `npm run android:run` | Build and run Android app |
+| `npm run android:dev` | Run Android with live reload |
+| `npm run docker:build-image` | Build Docker image |
+
+## Development Workflows
+
+### Web Development
+```bash
+npm run dev
+```
+- Hot reload enabled
+- TypeScript checking
+- Access at http://localhost:3000
+
+### Mobile Development
+1. **First-time setup:**
+   ```bash
+   npm run setup:android
+   ```
+
+2. **Development with live reload:**
+   ```bash
+   # Terminal 1 - Start dev server
+   npm run dev
+  
+   # Terminal 2 - Run Android with live reload
+   npm run android:dev
+   ```
+
+3. **Production build:**
+   ```bash
+   npm run mobile:build
+   npm run android:run
+   ```
+
+### Docker Deployment
+```bash
+# Build and run locally
+npm run docker:build-image
+docker run -p 3000:3000 tic-tac-toe
+
+# Or build without running
+npm run build:docker
+```
+
+## Configuration
+
+### Build Modes
+The project uses two build modes configured in `next.config.js`:
+
+- **Docker mode** (`BUILD_MODE=docker`): Standalone output for container deployment
+- **Capacitor mode** (`BUILD_MODE=capacitor`): Static export for mobile apps
+
+### Environment Variables
+No environment variables required for basic functionality. Build mode is set via npm scripts.
+
+## Mobile Development Notes
+
+- The `android/` directory is generated by Capacitor and should not be committed to git
+- Live reload requires your dev server to be accessible from the Android emulator/device
+- Use `--external` flag if running on a physical device connected to the same network
+
+## Docker Notes
+
+- Image is built using multi-stage Dockerfile
+- Optimized for production with minimal footprint
+- Runs on port 3000 by default
+
+## Technologies Used
+
+- **Framework**: Next.js 14 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Mobile**: Capacitor
+- **Container**: Docker
+- **Linting**: ESLint
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test both web and mobile builds
+5. Submit a pull request
+
+## License
+
+MIT License - see LICENSE file for details
