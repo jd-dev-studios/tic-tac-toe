@@ -68,7 +68,7 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-500 to-blue-500 py-4 sm:py-8 md:py-12">
+    <main className="min-h-screen bg-gradient-to-br from-slate-500 to-blue-500 py-4 sm:py-8 md:py-12 safe-area">
       {/* Popup modals for winner and draw. */}
       {winner && <WinnerModal winner={winner} onNewGame={handleNewGame} />}
       {isDraw && <DrawModal onNewGame={handleNewGame} />}
